@@ -6,6 +6,7 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# Check if ffmpeg is installed
 if ! command -v ffmpeg > /dev/null; then
     printf "\033[0;31mffmpeg not found!\033[0m"
     exit 1
@@ -14,7 +15,10 @@ fi
 input="$1"
 output="${input%.*}.m4a"
 
-ffmpeg -i "$input" -vn -acodec copy "$output"
+# - -i "$input": Specifies the input file, where "$input" is the path of the video file.
+# - -vn: Tells ffmpeg to "disable video" (ignore any video stream in the input file), meaning only the audio stream will be processed.
+# - -acodec aac: Sets the audio codec to AAC for the output file, ensuring compatibility with the .m4a format, as AAC is a common audio codec for .m4a files.
+ffmpeg -i "$input" -vn -acodec aac "$output"
 
 # $? saves the exit status of the previous command. 0 means success, and non-0 means error.
 if [ $? -eq 0 ]; then

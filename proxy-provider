@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Check parameters
+if [ $# -ne 1 ]; then
+    printf "\033[0;31mUsage: $0 <input>\033[0m"
+    exit 1
+fi
+
+url="$1"
+
+# HTTP
+curl -s -H "User-Agent: ClashX Pro/1.72.0.4 (com.west2online.ClashXPro; build:1.72.0.4; macOS 12.0.1) Alamofire/5.4.4" \
+     -X GET "$url" -o proxy.yaml
+
+# 检查curl是否成功
+if [ $? -ne 0 ]; then
+  echo "\033[0;31mError: Unable to fetch URL\033[0m"
+  exit 1
+fi
+
+echo "\033[0;32mYAML file saved as config.yaml\033[0m"
+
