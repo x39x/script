@@ -9,7 +9,7 @@ fi
 url="$1"
 
 #NOTE: HEADER: "clash-verge/v2.5.1"   "Clash/v1.18.0"    "mihomo/1.18.3"
-if curl -sSL -H "User-Agent:clash-verge/v2.4.2" "$url" -o proxy.yaml; then
+if curl -sSL -H "User-Agent:clash-verge/v2.5.1" "$url" -o proxy.yaml; then
         printf "\033[0;32mYAML file saved as proxy.yaml\033[0m"
 else
         printf "\033[0;31mError: Unable to fetch URL\033[0m"
